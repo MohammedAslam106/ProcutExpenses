@@ -40,7 +40,7 @@ function ExpenseForm({expenseBtn,setExpenseBtn,editExpense=null}) {
     await axios.post('http://localhost:3000/api/expenses',{
       title:title,amount:expense,date:date,description:description,categories:categories
     },{headers:{
-      Authorization:`Bearer ${temp}`
+      Authorization:`Bearer ${currentUser.message}`
     }}).then((response)=>{
       console.log(response)
       setTitle('')

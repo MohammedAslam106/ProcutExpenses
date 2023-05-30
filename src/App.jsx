@@ -28,7 +28,7 @@ function App() {
   useEffect(()=>{
     const allExpense=async()=>{
     await axios.get('http://localhost:3000/api/expenses',{headers:{
-        Authorization:`Bearer ${temp}`
+        Authorization:`Bearer ${currentUser.message}`
     }}).then((response)=>{
       console.log(response.data)
       setAllExpenses(response.data)
