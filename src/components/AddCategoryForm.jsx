@@ -44,7 +44,7 @@ function CategoryForm({categoryBtn,setCategoryBtn}) {
       aria-labelledby="contained-modal-title-vcenter"
       centered>
         <Modal.Header closeButton onClick={()=>setCategoryBtn(false)}>
-          <Modal.Title style={{marginLeft:'9rem'}}>Add a category</Modal.Title>
+          <Modal.Title>Add a category</Modal.Title>
         </Modal.Header>
 
         <Modal.Body >

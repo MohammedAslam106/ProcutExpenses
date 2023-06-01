@@ -52,10 +52,9 @@ function App() {
   return (
     <div
       
-     className='container w-75 '>
+     className='container' style={{overflow:'scroll'}}>
         <h1 className='text-center'>Expense Tracker</h1>
         <Chart
-          
           data = {{
             labels:Array(15).fill(null).map((_,i)=>subDays(new Date(),i)),
             datasets: [

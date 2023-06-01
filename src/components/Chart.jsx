@@ -54,7 +54,7 @@ const options = {
 
 export function Chart({data}) {
   return (
-    <div className='m-2'>
+    <div className='m-2 m-auto' style={{width:'90%',height:'100%'}}>
         <Line options={options} data={data} />
     </div>
   );

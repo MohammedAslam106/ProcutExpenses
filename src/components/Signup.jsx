@@ -18,7 +18,7 @@ export const Signup=()=>{
 
     const [checkUser,setCheckUser]=useState(false)
     return(
-        <div className="mt-5 p-3 m-auto w-25 border rounded">
+        <div style={{width:'300px'}} className="mt-5 p-3 m-auto  border rounded">
             <div>
                 <Form.Label className="ms-2 mt-2">Name</Form.Label>
                 <Form.Control placeholder="Name" type="text" required onChange={(e)=>setName(e.target.value)}/>

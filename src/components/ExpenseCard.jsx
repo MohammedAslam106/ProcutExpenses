@@ -18,7 +18,7 @@ export default function ExpenseCard({expense}){
           <div className="card-body" style={{width:'280px',height:'150px'}}>
             <div className='d-flex justify-content-between'>
               <h5 className="card-title">{expense.amount}</h5>
-              <h5 className=''><Badge className='bg-success'>{expense.status}</Badge></h5>
+              <h5 className=''><Badge className='bg-success'>{expense.status?expense.status:"paid"}</Badge></h5>
             </div>
             <div className='d-flex justify-content-between'>
               <h6 className="card-subtitle mt-1 text-muted">{expense.title}</h6>

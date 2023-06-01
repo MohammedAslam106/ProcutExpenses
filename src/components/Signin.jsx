@@ -13,7 +13,7 @@ export const Signin=()=>{
 
     return(
         currentUser?<Navigate to={'/'}/>:
-        <div className="mt-5 p-3 m-auto w-25 border rounded">
+        <div style={{width:'300px'}} className="mt-5 p-3 m-auto border rounded signin">
             <div>
                 <Form.Label className="ms-2 mt-2">Username</Form.Label>
                 <Form.Control onChange={(e)=>{setUsername(e.target.value)

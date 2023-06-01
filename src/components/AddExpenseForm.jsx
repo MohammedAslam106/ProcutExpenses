@@ -1,12 +1,16 @@
 import Button from 'react-bootstrap/Button';
 import Modal from 'react-bootstrap/Modal';
-import { Form } from 'react-bootstrap';
+import { Badge, Dropdown, DropdownButton, Form } from 'react-bootstrap';
 
 import CategoryDropdown from './CategoryDropdown';
 import { useEffect, useState } from 'react';
 import axios from 'axios';
 import { useContext } from 'react';
 import { userAuth } from '../contexts/AuthContext';
+import DropdownToggle from 'react-bootstrap/esm/DropdownToggle';
+import DropdownMenu from 'react-bootstrap/esm/DropdownMenu';
+import DropdownItem from 'react-bootstrap/esm/DropdownItem';
+import DropdownContext from 'react-bootstrap/esm/DropdownContext';
 
 function ExpenseForm({expenseBtn,setExpenseBtn,editExpense=null}) {
   const [title,setTitle]=useState('')
@@ -15,6 +19,7 @@ function ExpenseForm({expenseBtn,setExpenseBtn,editExpense=null}) {
   const[description,setDescription]=useState('')
   const[categories,setCategories]=useState([])
   const {currentUser}=userAuth()
+  const[status,setStatus]=useState('')
   useEffect(()=>{
     if(editExpense!==null){
       console.log(editExpense)
@@ -22,6 +27,7 @@ function ExpenseForm({expenseBtn,setExpenseBtn,editExpense=null}) {
     setDate(editExpense.date?.slice(0,10))
     setDescription(editExpense.description)
     setTitle(editExpense.title)
+    setStatus(editExpense.status)
     setCategories(editExpense.categories?.map(cat=>{
       return cat._id
     }))
@@ -38,7 +44,7 @@ function ExpenseForm({expenseBtn,setExpenseBtn,editExpense=null}) {
     // console.log(currentUser.message)
     if(editExpense==null){
     await axios.post('http://localhost:3000/api/expenses',{
-      title:title,amount:expense,date:date,description:description,categories:categories
+      title:title,amount:expense,status:status,date:date,description:description,categories:categories
     },{headers:{
       Authorization:`Bearer ${currentUser.message}`
     }}).then((response)=>{
@@ -47,6 +53,7 @@ function ExpenseForm({expenseBtn,setExpenseBtn,editExpense=null}) {
       setDescription('')
       setExpense('')
       setDate('')
+      setStatus('')
       setExpenseBtn(false)}
     ).catch((error)=>{console.log(error.message)})}
     else{
@@ -68,7 +75,7 @@ function ExpenseForm({expenseBtn,setExpenseBtn,editExpense=null}) {
       aria-labelledby="contained-modal-title-vcenter"
       centered>
         <Modal.Header closeButton onClick={()=>setExpenseBtn(false)}>
-          <Modal.Title style={{marginLeft:'9rem'}}>Add an expense</Modal.Title>
+          <Modal.Title>{editExpense?'Edit':'Add'} an expense</Modal.Title>
         </Modal.Header>
 
         <Modal.Body >
@@ -87,6 +94,15 @@ function ExpenseForm({expenseBtn,setExpenseBtn,editExpense=null}) {
                 <Form.Control value={date}  type='date' placeholder='Enter the date' onChange={(e)=>setDate(e.target.value)}/>
               </div>
             </div>
+            <h6 className='mt-2 ms-2'><Badge>{status}</Badge></h6>
+            <Dropdown>
+              <DropdownToggle>Status</DropdownToggle>
+              <DropdownMenu>
+                <DropdownItem onClick={()=>setStatus('paid')}>paid</DropdownItem>
+                <DropdownItem onClick={()=>setStatus('unpaid')}>unpaid</DropdownItem>
+              </DropdownMenu>
+            </Dropdown>
+
             <Form.Label className='mt-2'>Title</Form.Label>
             <Form.Control value={title}  type='text' placeholder='Enter the title' onChange={(e)=>setTitle(e.target.value)}/>
 
