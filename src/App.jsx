@@ -23,7 +23,7 @@ function App() {
   
 
   const temp='eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJuYW1lIjoiamFudSIsInVzZXJuYW1lIjoiamFudUBqYW51IiwiaWQiOiI2NDY4NWY3NmVmNTE4MTQxNDQyMzBlYjMiLCJpYXQiOjE2ODQ3MzI2ODV9.C72F3Z08fmLRf6c-sADM_gE_1nocZmYnN3nnXohEngk'
-
+  let date=''
 
   useEffect(()=>{
     const allExpense=async()=>{
@@ -56,7 +56,7 @@ function App() {
         <h1 className='text-center'>Expense Tracker</h1>
         <Chart
           data = {{
-            labels:Array(15).fill(null).map((_,i)=>subDays(new Date(),i)),
+            labels:Array(15).fill(null).map((_,i)=>subDays(new Date(),i).toISOString()),
             datasets: [
               {
                 label: 'Expenses',

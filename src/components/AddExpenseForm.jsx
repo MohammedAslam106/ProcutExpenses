@@ -91,7 +91,7 @@ function ExpenseForm({expenseBtn,setExpenseBtn,editExpense=null}) {
                 <Form.Label className='ms-2'>
                   Date
                 </Form.Label>
-                <Form.Control value={date}  type='date' placeholder='Enter the date' onChange={(e)=>setDate(e.target.value)}/>
+                <Form.Control value={date}  type='datetime-local' placeholder='Enter the date' onChange={(e)=>setDate(e.target.value)}/>
               </div>
             </div>
             <h6 className='mt-2 ms-2'><Badge>{status}</Badge></h6>
