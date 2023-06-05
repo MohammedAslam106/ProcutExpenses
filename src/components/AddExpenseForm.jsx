@@ -13,6 +13,7 @@ import DropdownItem from 'react-bootstrap/esm/DropdownItem';
 import DropdownContext from 'react-bootstrap/esm/DropdownContext';
 
 function ExpenseForm({expenseBtn,setExpenseBtn,editExpense=null}) {
+  const BASE_URL=import.meta.env.VITE_BASE_URL
   const [title,setTitle]=useState('')
   const [expense,setExpense]=useState('')
   const [date,setDate]=useState('')
@@ -58,7 +59,7 @@ function ExpenseForm({expenseBtn,setExpenseBtn,editExpense=null}) {
     ).catch((error)=>{console.log(error.message)})}
     else{
       const id=editExpense._id
-      await axios.patch(`http://localhost:3000/api/expenses/${id}`,{
+      await axios.patch(`${BASE_URL}/api/expenses/${id}`,{
         title:title,amount:expense,date:date,description:description,categories:categories
       },{headers:{
         Authorization:`Bearer ${temp}`

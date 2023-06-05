@@ -3,6 +3,7 @@ import { createContext, useEffect, useState } from "react"
 import { useContext } from "react"
 
 const AuthContext=createContext()
+const BASE_URL=import.meta.env.VITE_BASE_URL
 
 export const userAuth=()=>{
     return useContext(AuthContext)
@@ -19,7 +20,7 @@ export const AuthProvider=({children})=>{
         }
     },[])
     const signup= async (name,username,password)=>{
-        const response=await axios.post('http://localhost:3000/api/auth/signup',{
+        const response=await axios.post(`${BASE_URL}/api/auth/signup`,{
             name,username,password
         })
         if(response.status===200){
@@ -28,7 +29,7 @@ export const AuthProvider=({children})=>{
         return false
     }
     const signin=async (username,password)=>{
-        await axios.post('http://localhost:3000/api/auth/signin',{
+        await axios.post(`${BASE_URL}/api/auth/signin`,{
             username,password
         }).then((response)=>{
             console.log(response.data)

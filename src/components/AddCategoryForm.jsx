@@ -11,11 +11,12 @@ function CategoryForm({categoryBtn,setCategoryBtn}) {
     const [desc,setDesc]=useState('')
     const [checkCategory,setCheckCategory]=useState(false)
     const {currentUser}=userAuth()
+    const BASE_URL=import.meta.env.VITE_BASE_URL
 
     async function allCategories (title,desc){
         console.log(currentUser.message)
         const token=`Bearer ${currentUser.message}`
-        const response=await axios.post('http://localhost:3000/api/categories',
+        const response=await axios.post(`${BASE_URL}/api/categories`,
         {title:title,description:desc},{
           headers:{
             Authorization:token

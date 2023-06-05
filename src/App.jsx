@@ -9,9 +9,11 @@ import axios from 'axios'
 import { sub, subDays } from 'date-fns'
 import { userAuth } from './contexts/AuthContext'
 
+
 function App() {
   const [expenseBtn,setExpenseBtn]=useState(false)
   const [categoryBtn,setCategoryBtn]=useState(false)
+  const BASE_URL=import.meta.env.VITE_BASE_URL
   
 
   const[allExpenses,setAllExpenses]=useState([])
@@ -19,15 +21,10 @@ function App() {
   
 
   const {currentUser}=userAuth()
-
-  
-
-  const temp='eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJuYW1lIjoiamFudSIsInVzZXJuYW1lIjoiamFudUBqYW51IiwiaWQiOiI2NDY4NWY3NmVmNTE4MTQxNDQyMzBlYjMiLCJpYXQiOjE2ODQ3MzI2ODV9.C72F3Z08fmLRf6c-sADM_gE_1nocZmYnN3nnXohEngk'
-  let date=''
-
+  console.log(BASE_URL)
   useEffect(()=>{
     const allExpense=async()=>{
-    await axios.get('http://localhost:3000/api/expenses',{headers:{
+    await axios.get(`${BASE_URL}/api/expenses`,{headers:{
         Authorization:`Bearer ${currentUser.message}`
     }}).then((response)=>{
       console.log(response.data)
@@ -52,7 +49,7 @@ function App() {
   return (
     <div
       
-     className='container' style={{overflow:'scroll'}}>
+     className='container'>
         <h1 className='text-center'>Expense Tracker</h1>
         <Chart
           data = {{

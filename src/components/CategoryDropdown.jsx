@@ -12,8 +12,8 @@ const CategoryDropdown=({categories,setCategories})=>{
   const [category,setCategory]=useState([])
   useEffect(()=>{
     const allcategories=async()=>{
-      const temp='eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJuYW1lIjoiamFudSIsInVzZXJuYW1lIjoiamFudUBqYW51IiwiaWQiOiI2NDY4NWY3NmVmNTE4MTQxNDQyMzBlYjMiLCJpYXQiOjE2ODQ3MzI2ODV9.C72F3Z08fmLRf6c-sADM_gE_1nocZmYnN3nnXohEngk'
-      const response=await axios.get('http://localhost:3000/api/categories',{headers:{
+      const BASE_URL=import.meta.env.VITE_BASE_URL
+      const response=await axios.get(`${BASE_URL}/api/categories`,{headers:{
         Authorization:`Bearer ${currentUser.message}`
       }})
       if(response.status===200){
