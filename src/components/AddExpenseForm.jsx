@@ -21,6 +21,7 @@ function ExpenseForm({expenseBtn,setExpenseBtn,editExpense=null}) {
   const[categories,setCategories]=useState([])
   const {currentUser}=userAuth()
   const[status,setStatus]=useState('')
+  
   useEffect(()=>{
     if(editExpense!==null){
       console.log(editExpense)
@@ -44,7 +45,7 @@ function ExpenseForm({expenseBtn,setExpenseBtn,editExpense=null}) {
   const formSubmission=async()=>{
     // console.log(currentUser.message)
     if(editExpense==null){
-    await axios.post('http://localhost:3000/api/expenses',{
+    await axios.post(`${BASE_URL}/api/expenses`,{
       title:title,amount:expense,status:status,date:date,description:description,categories:categories
     },{headers:{
       Authorization:`Bearer ${currentUser.message}`
