@@ -63,7 +63,7 @@ function ExpenseForm({expenseBtn,setExpenseBtn,editExpense=null}) {
       await axios.patch(`${BASE_URL}/api/expenses/${id}`,{
         title:title,amount:expense,date:date,description:description,categories:categories
       },{headers:{
-        Authorization:`Bearer ${temp}`
+        Authorization:`Bearer ${currentUser.message}`
       }}).then((data)=>{
         window.location='/'
       }).catch((error)=>{
